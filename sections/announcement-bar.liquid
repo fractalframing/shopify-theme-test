@@ -1,0 +1,71 @@
+{%- if section.settings.announcement_text != blank -%}
+  <div class="announcement-bar" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+    <div class="announcement-bar__content">
+      <p class="announcement-bar__text">{{ section.settings.announcement_text }}</p>
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .announcement-bar {
+    width: 100%;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .announcement-bar__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .announcement-bar__text {
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  @media screen and (max-width: 749px) {
+    .announcement-bar {
+      padding: 8px 15px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Welcome to our store!"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar"
+    }
+  ]
+}
+{% endschema %}

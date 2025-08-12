@@ -1,0 +1,180 @@
+<style>
+  /* Page Template Styles */
+  .page-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* Page Header */
+  .page-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  .page-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+    line-height: 1.2;
+  }
+
+  /* Page Content */
+  .page-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #444;
+  }
+
+  /* Typography for page content */
+  .page-content h1,
+  .page-content h2,
+  .page-content h3,
+  .page-content h4,
+  .page-content h5,
+  .page-content h6 {
+    margin-top: 32px;
+    margin-bottom: 16px;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .page-content h1 { font-size: 32px; }
+  .page-content h2 { font-size: 28px; }
+  .page-content h3 { font-size: 24px; }
+  .page-content h4 { font-size: 20px; }
+  .page-content h5 { font-size: 18px; }
+  .page-content h6 { font-size: 16px; }
+
+  .page-content p {
+    margin-bottom: 16px;
+  }
+
+  .page-content ul,
+  .page-content ol {
+    margin-bottom: 16px;
+    padding-left: 30px;
+  }
+
+  .page-content li {
+    margin-bottom: 8px;
+  }
+
+  .page-content a {
+    color: #2c5282;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .page-content a:hover {
+    color: #2a4e7c;
+    text-decoration: underline;
+  }
+
+  .page-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .page-content blockquote {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-left: 4px solid #2c5282;
+    font-style: italic;
+    color: #666;
+  }
+
+  .page-content table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+  }
+
+  .page-content th,
+  .page-content td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .page-content th {
+    background-color: #f7f7f7;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .page-content hr {
+    margin: 32px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-container {
+      padding: 30px 15px;
+    }
+
+    .page-title {
+      font-size: 28px;
+    }
+
+    .page-content {
+      font-size: 15px;
+    }
+
+    .page-content h1 { font-size: 28px; }
+    .page-content h2 { font-size: 24px; }
+    .page-content h3 { font-size: 20px; }
+    .page-content h4 { font-size: 18px; }
+    .page-content h5 { font-size: 16px; }
+    .page-content h6 { font-size: 15px; }
+  }
+
+  /* Optional: Add page metadata display */
+  .page-meta {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #666;
+  }
+
+  .page-meta-item {
+    margin-bottom: 8px;
+  }
+</style>
+
+<div class="page-container">
+  <!-- Page Header -->
+  <header class="page-header">
+    <h1 class="page-title">{{ page.title }}</h1>
+  </header>
+
+  <!-- Page Content -->
+  <div class="page-content">
+    {{ page.content }}
+  </div>
+
+  <!-- Optional: Page Metadata -->
+  {% if page.author or page.published_at %}
+    <div class="page-meta">
+      {% if page.author %}
+        <div class="page-meta-item">
+          <strong>Author:</strong> {{ page.author }}
+        </div>
+      {% endif %}
+      {% if page.published_at %}
+        <div class="page-meta-item">
+          <strong>Published:</strong> {{ page.published_at | date: "%B %d, %Y" }}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,117 @@
+<style>
+  .product-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .product-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .product-image-section {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .product-details-section {
+    flex: 1;
+    max-width: 50%;
+  }
+
+  .product-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: #333;
+  }
+
+  .product-price {
+    font-size: 24px;
+    color: #2c5282;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+
+  .product-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  .add-to-cart-button {
+    background-color: #2c5282;
+    color: white;
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .add-to-cart-button:hover {
+    background-color: #2a4e7c;
+  }
+
+  .add-to-cart-button:active {
+    transform: translateY(1px);
+  }
+
+  @media (max-width: 768px) {
+    .product-wrapper {
+      flex-direction: column;
+    }
+
+    .product-image-section,
+    .product-details-section {
+      max-width: 100%;
+    }
+
+    .product-title {
+      font-size: 24px;
+    }
+
+    .product-price {
+      font-size: 20px;
+    }
+
+    .add-to-cart-button {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<div class="product-container">
+  <div class="product-wrapper">
+    <div class="product-image-section">
+      <img src="{{  product.featured_image | image_url: width: 800 }}" alt="Product Image" class="product-image">
+    </div>
+    <div class="product-details-section">
+      <h1 class="product-title">{{  product.title  }}</h1>
+      <div class="product-price">{{  product.price | times: 2| money }}</div>
+      <div class="product-description">
+        {{ product.description }}
+      </div>
+      {%  form 'product', product  %}
+        <input type="hidden" name="id" value="{{  product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="add-to-cart-button" type="button">
+          Add to Cart
+        </button>
+      {%  endform  %}
+    </div>
+  </div>
+</div>

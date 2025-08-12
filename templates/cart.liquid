@@ -1,0 +1,441 @@
+<style>
+  .cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  .cart-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .cart-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .cart-items-count {
+    color: #666;
+    font-size: 1.1rem;
+  }
+
+  .empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .empty-cart-icon {
+    font-size: 4rem;
+    color: #ddd;
+    margin-bottom: 20px;
+  }
+
+  .empty-cart h2 {
+    color: #666;
+    margin-bottom: 20px;
+  }
+
+  .continue-shopping-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+
+  .continue-shopping-btn:hover {
+    background-color: #555;
+  }
+
+  .cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+
+  .cart-table th {
+    text-align: left;
+    padding: 15px;
+    border-bottom: 2px solid #e0e0e0;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+
+  .cart-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+  }
+
+  .cart-item {
+    transition: background-color 0.2s ease;
+  }
+
+  .cart-item:hover {
+    background-color: #fafafa;
+  }
+
+  .product-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+  }
+
+  .product-details h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .product-details h3 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .product-details h3 a:hover {
+    color: #666;
+  }
+
+  .product-variant {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+
+  .product-vendor {
+    color: #999;
+    font-size: 0.85rem;
+  }
+
+  .quantity-selector {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .quantity-btn {
+    background: #f5f5f5;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #666;
+    transition: background-color 0.2s ease;
+  }
+
+  .quantity-btn:hover {
+    background: #e0e0e0;
+  }
+
+  .quantity-input {
+    border: none;
+    width: 50px;
+    text-align: center;
+    padding: 8px;
+    font-size: 1rem;
+  }
+
+  .price {
+    font-weight: 600;
+    color: #333;
+    font-size: 1.1rem;
+  }
+
+  .remove-item {
+    color: #999;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+  }
+
+  .remove-item:hover {
+    color: #e74c3c;
+  }
+
+  .cart-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 40px;
+    gap: 40px;
+  }
+
+  .cart-notes {
+    flex: 1;
+  }
+
+  .cart-notes h3 {
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .cart-notes textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+  }
+
+  .cart-summary {
+    flex: 0 0 350px;
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+  }
+
+  .cart-summary h3 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.3rem;
+  }
+
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: #666;
+  }
+
+  .summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #e0e0e0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background-color: #27ae60;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+  }
+
+  .checkout-btn:hover {
+    background-color: #219a52;
+    color: white;
+  }
+
+  .shipping-calculator {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .shipping-calculator summary {
+    cursor: pointer;
+    color: #666;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .cart-table {
+      display: block;
+      overflow-x: auto;
+    }
+
+    .cart-footer {
+      flex-direction: column;
+    }
+
+    .cart-summary {
+      flex: 1;
+      width: 100%;
+    }
+
+    .product-info {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .quantity-selector {
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<div class="cart-container">
+  <div class="cart-header">
+    <h1>Shopping Cart</h1>
+    {% if cart.item_count > 0 %}
+      <p class="cart-items-count">{{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %} in your cart</p>
+    {% endif %}
+  </div>
+
+  {% if cart.item_count == 0 %}
+    <div class="empty-cart">
+      <div class="empty-cart-icon">🛒</div>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything to your cart yet.</p>
+      <a href="/collections/all" class="continue-shopping-btn">Continue Shopping</a>
+    </div>
+  {% else %}
+    <form action="/cart" method="post" novalidate>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr class="cart-item" data-cart-item data-variant-id="{{ item.variant_id }}">
+              <td>
+                <div class="product-info">
+                  {% if item.image %}
+                    <img src="{{ item.image | img_url: '200x200' }}" alt="{{ item.product.title }}" class="product-image">
+                  {% endif %}
+                  <div class="product-details">
+                    <h3><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+                    {% unless item.variant.title == 'Default Title' %}
+                      <p class="product-variant">{{ item.variant.title }}</p>
+                    {% endunless %}
+                    {% if item.vendor %}
+                      <p class="product-vendor">{{ item.vendor }}</p>
+                    {% endif %}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="price">{{ item.price | money }}</span>
+              </td>
+              <td>
+                <div class="quantity-selector">
+                  <button type="button" class="quantity-btn" data-quantity-decrease>−</button>
+                  <input type="number" 
+                         name="updates[]" 
+                         id="updates_{{ item.key }}" 
+                         value="{{ item.quantity }}" 
+                         min="0"
+                         class="quantity-input"
+                         data-quantity-input>
+                  <button type="button" class="quantity-btn" data-quantity-increase>+</button>
+                </div>
+              </td>
+              <td>
+                <span class="price">{{ item.line_price | money }}</span>
+              </td>
+              <td>
+                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="remove-item">Remove</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="cart-footer">
+        <div class="cart-notes">
+          <h3>Order Notes</h3>
+          <textarea name="note" id="cart-note" placeholder="Add a note to your order (optional)">{{ cart.note }}</textarea>
+        </div>
+
+        <div class="cart-summary">
+          <h3>Order Summary</h3>
+          
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          {% if cart.total_discount > 0 %}
+            <div class="summary-line">
+              <span>Discount</span>
+              <span>-{{ cart.total_discount | money }}</span>
+            </div>
+          {% endif %}
+
+          <div class="summary-line">
+            <span>Shipping</span>
+            <span>Calculated at checkout</span>
+          </div>
+
+          <div class="summary-total">
+            <span>Total</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+
+          <a href="/checkout" class="checkout-btn">
+            Proceed to Checkout
+          </a>
+
+          <details class="shipping-calculator">
+            <summary>Estimate shipping</summary>
+            <!-- Shipping calculator would go here -->
+          </details>
+        </div>
+      </div>
+    </form>
+  {% endif %}
+</div>
+
+<script>
+  // Quantity selector functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle quantity increase
+    document.querySelectorAll('[data-quantity-increase]').forEach(button => {
+      button.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('[data-quantity-input]');
+        input.value = parseInt(input.value) + 1;
+        input.form.submit();
+      });
+    });
+
+    // Handle quantity decrease
+    document.querySelectorAll('[data-quantity-decrease]').forEach(button => {
+      button.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('[data-quantity-input]');
+        const newValue = parseInt(input.value) - 1;
+        if (newValue >= 0) {
+          input.value = newValue;
+          input.form.submit();
+        }
+      });
+    });
+
+    // Handle manual quantity input change
+    document.querySelectorAll('[data-quantity-input]').forEach(input => {
+      input.addEventListener('change', function() {
+        if (this.value < 0) this.value = 0;
+        this.form.submit();
+      });
+    });
+  });
+</script>

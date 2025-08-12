@@ -1,0 +1,351 @@
+<style>
+  /* Header Container Styles */
+  .site-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .header-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+  }
+
+  /* Logo Styles */
+  .header-logo {
+    flex-shrink: 0;
+  }
+
+  .logo-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .logo-image {
+    max-height: 50px;
+    width: auto;
+  }
+
+  /* Navigation Styles */
+  .header-nav {
+    flex-grow: 1;
+    margin: 0 40px;
+  }
+
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+  }
+
+  .nav-item {
+    position: relative;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 10px 0;
+    display: block;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: #007bff;
+  }
+
+  /* Dropdown Menu Styles */
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+  }
+
+  .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-item {
+    padding: 8px 20px;
+  }
+
+  .dropdown-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 14px;
+    display: block;
+    transition: color 0.3s ease;
+  }
+
+  .dropdown-link:hover {
+    color: #007bff;
+  }
+
+  /* Search Bar Styles */
+  .header-search {
+    flex-grow: 1;
+    max-width: 400px;
+    margin-right: 30px;
+  }
+
+  .search-form {
+    display: flex;
+    position: relative;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  .search-input:focus {
+    border-color: #007bff;
+  }
+
+  .search-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .search-button:hover {
+    color: #007bff;
+  }
+
+  /* Header Actions Styles */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .action-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .action-link:hover {
+    color: #007bff;
+  }
+
+  .action-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #007bff;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+  }
+
+  /* Mobile Menu Toggle */
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .menu-icon {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    position: relative;
+    transition: background-color 0.3s ease;
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    transition: transform 0.3s ease;
+  }
+
+  .menu-icon::before {
+    top: -8px;
+  }
+
+  .menu-icon::after {
+    bottom: -8px;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .header-main {
+      flex-wrap: wrap;
+    }
+
+    .header-nav {
+      display: none;
+      width: 100%;
+      order: 3;
+      margin: 20px 0 0 0;
+    }
+
+    .header-nav.active {
+      display: block;
+    }
+
+    .nav-menu {
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .nav-link {
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      padding-left: 20px;
+    }
+
+    .header-search {
+      order: 2;
+      width: 100%;
+      margin: 15px 0;
+      max-width: none;
+    }
+
+    .mobile-menu-toggle {
+      display: block;
+    }
+
+    .header-actions {
+      margin-left: auto;
+    }
+  }
+</style>
+
+<header class="site-header">
+  <div class="header-wrapper">
+    <div class="header-main">
+      <div class="header-logo">
+        {% if section.settings.logo != blank %}
+          <a href="{{ routes.root_url }}" class="logo-link">
+            <img src="{{ section.settings.logo | img_url: '200x' }}" alt="{{ shop.name }}" class="logo-image">
+          </a>
+        {% else %}
+          <a href="{{ routes.root_url }}" class="logo-link">
+            {{ shop.name }}
+          </a>
+        {% endif %}
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" onclick="toggleMobileMenu()">
+        <span class="menu-icon"></span>
+      </button>
+      <nav class="header-nav" id="headerNav">
+        <ul class="nav-menu">
+          {% for link in linklists.main-menu.links %}
+            <li class="nav-item">
+              <a href="{{ link.url }}" class="nav-link">{{ link.title }}</a>
+              {% if link.links != blank %}
+                <ul class="dropdown-menu">
+                  {% for childlink in link.links %}
+                    <li class="dropdown-item">
+                      <a href="{{ childlink.url }}" class="dropdown-link">{{ childlink.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <div class="header-search">
+        <form action="{{ routes.search_url }}" method="get" class="search-form">
+          <input type="search" name="q" placeholder="Search products..." class="search-input" value="{{ search.terms | escape }}">
+          <button type="submit" class="search-button" aria-label="Search">
+            <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </button>
+        </form>
+      </div>
+      <div class="header-actions">
+        <a href="{{ routes.account_url }}" class="action-link" aria-label="Account">
+          <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
+        </a>
+        <a href="{{ routes.cart_url }}" class="action-link" aria-label="Cart">
+          <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+          </svg>
+          {% if cart.item_count > 0 %}
+            <span class="cart-count">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function toggleMobileMenu() {
+    const nav = document.getElementById('headerNav');
+    nav.classList.toggle('active');
+  }
+</script>

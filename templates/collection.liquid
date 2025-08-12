@@ -1,0 +1,168 @@
+<style>
+/* Collection Page Styles */
+.collection-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Collection Header */
+.collection-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.collection-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Product Card */
+.product-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Image */
+.product-image-link {
+  display: block;
+  position: relative;
+  padding-bottom: 100%; /* 1:1 Aspect Ratio */
+  overflow: hidden;
+}
+
+.product-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+}
+
+/* Product Info */
+.product-info {
+  padding: 20px;
+}
+
+.product-title {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+  line-height: 1.4;
+}
+
+.product-title a {
+  color: #333;
+  text-decoration: none;
+}
+
+.product-title a:hover {
+  color: #666;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+/* Empty Collection */
+.empty-collection {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 18px;
+}
+</style>
+
+<div class="collection-page">
+  <!-- Collection Title -->
+  <div class="collection-header">
+    <h1 class="collection-title">{{ collection.title }}</h1>
+  </div>
+
+  <!-- Product Grid -->
+  <div class="product-grid">
+    {% for product in collection.products %}
+      <div class="product-card">
+        <!-- Product Image -->
+        <a href="{{ product.url }}" class="product-image-link">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | img_url: '400x400' }}" 
+                 alt="{{ product.title }}" 
+                 class="product-image">
+          {% else %}
+            <div class="no-image-placeholder">
+              <span>No Image</span>
+            </div>
+          {% endif %}
+        </a>
+
+        <!-- Product Info -->
+        <div class="product-info">
+          <h3 class="product-title">
+            <a href="{{ product.url }}">{{ product.title }}</a>
+          </h3>
+          <p class="product-price">
+            {{ product.price | money }}
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Empty Collection Message -->
+  {% if collection.products.size == 0 %}
+    <div class="empty-collection">
+      <p>No products found in this collection.</p>
+    </div>
+  {% endif %}
+</div>
