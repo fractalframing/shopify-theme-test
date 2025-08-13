@@ -1,0 +1,47 @@
+<div class="featured-collection">
+  {% if section.settings.collection != blank %}
+    {% assign collection = collections[section.settings.collection] %}
+    <h2>{{ collection.title }}</h2>
+    <div class="product-grid">
+      {% for product in collection.products limit: section.settings.products_to_show %}
+        <div class="product-item">
+          <a href="{{ product.url }}">
+            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.featured_image.alt }}">
+            <h3>{{ product.title }}</h3>
+            <p>{{ product.price | money }}</p>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Please select a collection in the section settings.</p>
+  {% endif %}
+</div>
+
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "range",
+        "id": "products_to_show",
+        "min": 2,
+        "max": 12,
+        "step": 1,
+        "label": "Products to show",
+        "default": 4
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}
